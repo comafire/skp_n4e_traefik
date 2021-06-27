@@ -1,0 +1,14 @@
+# direnv
+**/.envrc
+**/.secret
+
+# python
+**/__pycache__
+**/.pyenv
+
+# IPython Notebook
+**/.ipynb_checkpoints
+
+# traefik
+usr/
+var/

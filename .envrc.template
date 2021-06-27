@@ -1,0 +1,40 @@
+# BASE (주의: 환경 변수의 기준 값으로 변수 값 내에 다른 환경 변수를 참조하면 안됨)
+export SKP_USER="skp"
+export SKP_USERID=$(id -u $SKP_USER)
+export SKP_USER_HOME="/home/skp"
+export SKP_HOME="/home/skp/skp"
+
+# LOCALE
+export LOCALE="ko_KR.UTF-8" # or "en_US.UTF-8"
+
+# PYTHON
+export PYENV_PYVER="3.8.9"
+export PYENV_VENV="skp-n4e-traefik"
+export PATH="$HOME/.pyenv/bin:${PATH}"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+pyenv activate ${PYENV_VENV} 
+
+# NODEJS - N
+export N_PREFIX="${SKP_USER_HOME}/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# TRAEFIK
+export TRAEFIK_VER="2.4.8"
+export TRAEFIK_HOME="${SKP_HOME}/skp_n4e_traefik"
+export TRAEFIK_NAME="skp-n4e-traefik"
+export TRAEFIK_LOG="true"
+export TRAEFIK_LOG_LEVEL="debug"
+export TRAEFIK_ENTRYPOINTS_WEB="true"
+export TRAEFIK_ENTRYPOINTS_WEB_ADDRESS=":80"
+export TRAEFIK_ENTRYPOINTS_WEBSECURE="true"
+export TRAEFIK_ENTRYPOINTS_WEBSECURE_ADDRESS=":443"
+export TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT="true"
+export TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL="YOUR_EMAIL"
+export TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_STORAGE="${TRAEFIK_HOME}/var/acme.json"
+export TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_HTTPCHALLENGE="true"
+export TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_HTTPCHALLENGE_ENTRYPOINT="web"
+export TRAEFIK_PROVIDERS_FILE_DIRECTORY="${TRAEFIK_HOME}/etc"
+export TRAEFIK_PROVIDERS_FILE_FILENAME="traefik_dynamic.yml"
+

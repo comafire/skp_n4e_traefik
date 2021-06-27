@@ -1,0 +1,24 @@
+# Traefik 의 Static 설정은 환경 변수에 영향을 받기 때문에
+# 아래에 해당하는 Static 설정 부분을 .envrc 환경 변수에 지정하고 traefik 을 기동합니다.
+# https://doc.traefik.io/traefik/reference/static-configuration/env/
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: YOUR_EMAIL
+      storage: /home/skp/skp/skp_n4e_traefik/var/acme.json
+      httpChallenge:
+        # used during the challenge
+        entryPoint: web
+
+providers:
+  file:
+    filename: /home/skp/skp/skp_n4e_traefik/etc/traefik_dynamic.yml
+
+          

@@ -1,0 +1,8 @@
+{
+  "apps" : [{
+    "script" : "${TRAEFIK_HOME}/usr/traefik_v${TRAEFIK_VER}/traefik",
+    "name" : "${TRAEFIK_NAME}",
+    "args" : "",
+    "restart_delay" : 3000
+  }]
+}

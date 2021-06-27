@@ -1,0 +1,18 @@
+http:
+  routers:
+    nginx-skp-com:
+      rule: "Host(`nginx.skp.com`)"
+      service: nginx-skp-com
+      priority: 1000
+      # # for http
+      # entryPoints:
+      #   - web
+      # for https
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    nginx-skp-com:
+      loadBalancer:
+        servers:
+          - url: "http://182.168.1.22:80"
